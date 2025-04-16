@@ -93,6 +93,9 @@ int main(void) {
 		} else if (command == "EXIT") {
 			std::cout << "exiting!" << std::endl;
 			proceed = false;
+		} else if (std::cin.eof()) { 
+			std::cout << std::endl << "use the EXIT command next time..." << std::endl;
+			proceed = false;
 		}
 	}
 }
