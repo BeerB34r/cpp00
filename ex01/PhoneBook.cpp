@@ -31,7 +31,9 @@ void PhoneBook::entry(unsigned int i) {
 	if (forename.size() > 10) { forename.insert(9, 1, '.').resize(10); }
 	if (surname.size() > 10) { surname.insert(9, 1, '.').resize(10); }
 	if (nickname.size() > 10) { nickname.insert(9, 1, '.').resize(10); }
-
+	if (forename == "N/A" && surname == "N/A" && nickname == "N/A" && contacts[i].get_number() == "N/A" && contacts[i].get_secret() == "N/A") {
+		return ;
+	}
 	std::cout << std::right <<  std::setw(10) <<  i << "|";
 	std::cout << std::setw(10) << std::setprecision(10) << forename << "|";
 	std::cout << std::setw(10) << std::setprecision(10) << surname << "|";
@@ -39,5 +41,8 @@ void PhoneBook::entry(unsigned int i) {
 }
 
 Contact PhoneBook::search(int i) {
+	if (contacts[i].get_forename() == "N/A" && contacts[i].get_surname() == "N/A" && contacts[i].get_nickname() == "N/A" && contacts[i].get_number() == "N/A" && contacts[i].get_secret() == "N/A") {
+		throw std::invalid_argument("contact doesnt exist");
+	}
 	return contacts[i];
 }
